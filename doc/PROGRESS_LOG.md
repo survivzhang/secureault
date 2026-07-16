@@ -6,6 +6,7 @@ After finishing a day, write a `doc/day-NN.md` file and add its one-line entry a
 
 | Day | File | One-line summary |
 |-----|------|------------------|
+| 19 | [day-19.md](day-19.md) | Axios response interceptor: 401 → clear token + `window.location.href='/login'` (auto-logout on dead session). Testing caught a 401-vs-403 bug — backend returned 403 for invalid tokens; fixed `authenticateToken` to 401. Learned interceptors + why `window.location` (not `useNavigate`) in a non-component module. |
 | 18 | [day-18.md](day-18.md) | Built `ProtectedRoute` wrapper (`children` prop + `<Navigate replace/>`) and wrapped the `/dashboard` route; logged-out users now redirect to `/login`. Browser-verified. Learned children/ReactNode, default-vs-named imports, and `replace` history behavior. |
 | 17b | [day-17b.md](day-17b.md) | Dashboard polish: three-state pattern (`loading`/empty/data), lifted `fetchPassword`, added per-row **Delete** (refetch-after-mutate) + **View** (`getOne` → `alert(decryptedPassword)`); learned the full delete flow front-to-back (parameterized query + `user_id` authorization). |
 | 17 (+18) | [day-17.md](day-17.md) | Built Dashboard data fetching (`useState`/`useEffect`/`passwordAPI.getAll`), added `/dashboard` route + `useNavigate`, fixed a CORS block with `app.use(cors())`; login now works end-to-end (verified in browser). |
