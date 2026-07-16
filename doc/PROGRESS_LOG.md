@@ -6,6 +6,7 @@ After finishing a day, write a `doc/day-NN.md` file and add its one-line entry a
 
 | Day | File | One-line summary |
 |-----|------|------------------|
+| 17b | [day-17b.md](day-17b.md) | Dashboard polish: three-state pattern (`loading`/empty/data), lifted `fetchPassword`, added per-row **Delete** (refetch-after-mutate) + **View** (`getOne` → `alert(decryptedPassword)`); learned the full delete flow front-to-back (parameterized query + `user_id` authorization). |
 | 17 (+18) | [day-17.md](day-17.md) | Built Dashboard data fetching (`useState`/`useEffect`/`passwordAPI.getAll`), added `/dashboard` route + `useNavigate`, fixed a CORS block with `app.use(cors())`; login now works end-to-end (verified in browser). |
 
 <!-- Add new rows ABOVE this line, newest first. Template:
