@@ -1,12 +1,14 @@
 # 📅 Day 17 (+18) — Dashboard data fetching, routing, and CORS
 
-*2026-06-21* · Covers plan Days 17 & 18, plus Day 13 (CORS).
+_2026-06-21_ · Covers plan Days 17 & 18, plus Day 13 (CORS).
 
 ### 🎯 What I was trying to do
+
 Build the **Dashboard** to fetch the real vault list from the backend and show it,
 then wire **routing** so login actually navigates there.
 
 ### 🐛 Issues I faced (and the fix)
+
 1. **`.map()` printed as plain text** — wrote `passwords.map(...)` bare in JSX.
    → JSX needs `{ }` to switch into JavaScript: `{passwords.map(...)}`.
 2. **Nothing rendered** — no component wrapper.
@@ -29,6 +31,7 @@ then wire **routing** so login actually navigates there.
     → Stopped the Coursebox server to free the port.
 
 ### 💡 What I learned
+
 - **JSX:** `{ }` drops JavaScript into markup; a component is a function returning JSX.
 - **`useState`:** never assign with `=`; always call the setter so React re-renders. Empty array needs a generic type.
 - **`useEffect`:** callback can't be `async`; use an inner async function. `[]` deps = run once on mount.
@@ -39,18 +42,21 @@ then wire **routing** so login actually navigates there.
 - **Auth pattern (already correct):** every vault route uses `authenticateToken`; frontend route protection is just UX — the real lock is the backend JWT check.
 
 ### ✅ What we actually did
+
 - `Dashboard.tsx`: `useState<PasswordItem[]>([])` + `useEffect` + `passwordAPI.getAll()` → `setPasswords(data.passwords)`.
 - `App.tsx`: added the `/dashboard` route.
-- `Login.tsx`: (Day 18) `useNavigate()` to `/dashboard` after login. *(verify in place next session)*
+- `Login.tsx`: (Day 18) `useNavigate()` to `/dashboard` after login. _(verify in place next session)_
 - `server.ts`: added `import cors` + `app.use(cors())`.
 - Verified the full **login → navigate → fetch** flow in the real browser with Playwright. ✅
 - Committed + pushed (`a5bc860`) to `origin/master`; remote updated to renamed repo `password.git`.
 - Reorganized the plan: added design lessons **Day 21b–21f** into `LEARNING_PLAN.md` (single source).
 
 ### 📍 Where I am
+
 Done through **Day 18**. Login works end-to-end; Dashboard fetches real data.
 
 ### ⏭️ Next session
+
 - **Day 17b** — Dashboard polish: `loading` state, empty state, Delete button, View button (decrypt one via `getOne`).
 - Then **Day 19** (Axios 401 → redirect), **Day 20** (Register page), **Day 21+** (Tailwind + design 21b–21f).
 - **Startup:** postgres → backend (`:3000`) → frontend (`:5173`). Test login: `test@test.com` / `TestPassword123!`. Watch the port-3000 clash with Coursebox.

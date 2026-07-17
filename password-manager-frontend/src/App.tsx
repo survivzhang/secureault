@@ -1,7 +1,7 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import { authUtils } from './utils/auth';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import { authUtils } from "./utils/auth";
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   if (!authUtils.isAuthenticated()) {
@@ -16,7 +16,14 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Navigate to="/login" replace />} />
-        <Route path="/dashboard" element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

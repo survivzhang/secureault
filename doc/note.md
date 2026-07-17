@@ -8,15 +8,15 @@ A cheat-sheet of the reusable knowledge from these sessions. Skim before intervi
 
 The single most important takeaway. **Which navigation tool depends on WHERE you are:**
 
-| Context | Tool | Example |
-|---|---|---|
-| Inside a component, on an event (`onClick`) | `useNavigate()` | `const navigate = useNavigate(); navigate('/dashboard')` |
-| Inside a component, on the render path | `<Navigate />` | `return <Navigate to="/login" replace />` |
-| Anywhere else (plain modules, `api.ts`) | `window.location.href` | `window.location.href = '/login'` |
+| Context                                     | Tool                   | Example                                                  |
+| ------------------------------------------- | ---------------------- | -------------------------------------------------------- |
+| Inside a component, on an event (`onClick`) | `useNavigate()`        | `const navigate = useNavigate(); navigate('/dashboard')` |
+| Inside a component, on the render path      | `<Navigate />`         | `return <Navigate to="/login" replace />`                |
+| Anywhere else (plain modules, `api.ts`)     | `window.location.href` | `window.location.href = '/login'`                        |
 
 - `useNavigate` and `<Navigate>` are **React Router** tools — SPA navigation, no page reload, keeps app state.
 - `window.location.href` is a **plain browser** API — full page reload, wipes in-memory state, works ANYWHERE.
-- **Why `api.ts` must use `window.location`:** it's not a React component, so Hooks like `useNavigate` can't run there (Rules of Hooks). Bonus: the full reload is *good* on a dead session — clean slate.
+- **Why `api.ts` must use `window.location`:** it's not a React component, so Hooks like `useNavigate` can't run there (Rules of Hooks). Bonus: the full reload is _good_ on a dead session — clean slate.
 
 ---
 
@@ -45,7 +45,7 @@ The single most important takeaway. **Which navigation tool depends on WHERE you
 
 - Whatever JSX you nest between a component's tags becomes its `children` prop — **automatically**, you don't write `children=`.
 - `<ProtectedRoute><Dashboard/></ProtectedRoute>` → `<Dashboard/>` is passed in as `children`.
-- Mental model: a **box**. The wrapper *receives* the element and decides whether to render it (`return children`) or not (`return <Navigate/>`).
+- Mental model: a **box**. The wrapper _receives_ the element and decides whether to render it (`return children`) or not (`return <Navigate/>`).
 - `React.ReactNode` = the TypeScript type for "anything renderable" — the standard type for `children`.
 
 ---
@@ -56,7 +56,7 @@ Every network fetch has three possible states — the UI must handle all:
 
 - `loading` — starts `true`, cleared in **`finally`** (runs whether the fetch succeeds OR throws).
 - `error` — request failed.
-- `data` — success (and note: **empty ≠ loading** — an empty list is a *success* with no data).
+- `data` — success (and note: **empty ≠ loading** — an empty list is a _success_ with no data).
 - Order of early returns matters: check `loading` FIRST, then empty, then render. (Else "empty" flashes before data arrives, since state starts as `[]`.)
 
 ---
@@ -69,7 +69,7 @@ Every network fetch has three possible states — the UI must handle all:
 - **Bare boolean props:** `<Navigate replace />` = `replace={true}`. A prop with no value defaults to `true`.
 - **`replace` (history):** replaces the current history entry instead of pushing → Back button won't return to the blocked/dead page.
 - **default vs named imports:** `import Dashboard from ...` (default export, no braces) vs `import { authUtils } from ...` (named export, braces). Must match how the file exported.
-- **`return` + JSX parens:** optional — only needed when JSX starts on the line *below* `return` (avoids automatic semicolon insertion returning `undefined`).
+- **`return` + JSX parens:** optional — only needed when JSX starts on the line _below_ `return` (avoids automatic semicolon insertion returning `undefined`).
 - **`onClick` trap:** `onClick={() => handleDelete(p.id)}` (runs on click) — NOT `onClick={handleDelete(p.id)}` (runs immediately on render).
 
 ---

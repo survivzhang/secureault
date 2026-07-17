@@ -27,7 +27,7 @@ api.interceptors.response.use(
     const status = error.response?.status;
     if (status === 401) {
       authUtils.removeToken();
-      window.location.href = '/login';
+      window.location.href = "/login";
     } else if (status === 403) {
       console.log("Forbidden: No permission");
     } else if (status === 404) {
