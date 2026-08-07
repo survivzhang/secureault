@@ -19,22 +19,21 @@ function Register() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setError("Invalid email format");
-      return
+      return;
     }
     if (masterPassword.length < 12) {
       setError("Password must be at least 12 characters");
-      return
+      return;
     }
     if (masterPassword !== confirmPassword) {
       setError("Passwords do not match");
-      return
+      return;
     }
     try {
       await authAPI.register(email, masterPassword);
       navigate("/login");
-    }
-    catch(err:any) {
-       setError(err.response?.data?.error || "Registration failed");
+    } catch (err: any) {
+      setError(err.response?.data?.error || "Registration failed");
     }
   };
   return (

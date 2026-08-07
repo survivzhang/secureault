@@ -38,8 +38,8 @@ function Dashboard() {
     <div>
       {passwords.map((p) => (
         <div key={p.id} className="bg-white p-4 rounded shadow mb-3">
-          <p className="text">{p.website}</p>
-          <p className="text">{p.username}</p>
+          <p className="text-gray-800">{p.website}</p>
+          <p className="text-gray-500">{p.username}</p>
           <button onClick={() => handleDelete(p.id)}>Delete</button>
           <button onClick={() => handleView(p.id)}>View</button>
         </div>

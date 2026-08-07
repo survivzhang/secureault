@@ -34,32 +34,34 @@ function Login() {
   return (
     <div className="min-h-screen min-w-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h1 className="text-2xl font-bold mb-6">Login</h1>
+        <h1 className="text-2xl font-bold">Login</h1>
+        <p className="mt-1 mb-6 text-sm text-gray-800">Sign in</p>
         {/* 错误信息 */}
         {error && (
           <div className="bg-red-100 text-red-600 p-3 rounded mb-4">
             {error}
           </div>
         )}
-        <h3 className="email"></h3>
-        <Input
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          type="email"
-          placeholder="please enter email"
-        />
-        <h3 className="password"></h3>
-        <Input
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          type="password"
-          placeholder="please enter your password"
-        />
-        <Button onClick={handleLogin}>Login</Button>
+        {/* space-y-4 adds a top margin to every child except the first */}
+        <div className="space-y-4">
+          <Input
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            type="email"
+            placeholder="please enter email"
+          />
+          <Input
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            type="password"
+            placeholder="please enter your password"
+          />
+          <Button onClick={handleLogin} fullWidth>Login</Button>
+        </div>
       </div>
     </div>
   );

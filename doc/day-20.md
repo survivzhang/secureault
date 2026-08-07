@@ -1,13 +1,15 @@
 # 📅 Day 20 — Register.tsx (forms & validation)
 
-*2026-07-17* · Covers plan Day 20.
+_2026-07-17_ · Covers plan Day 20.
 
 ### 🎯 What I was trying to do
+
 Build `Register.tsx` from an empty stub: a controlled form (email + master password +
 confirm password) with client-side validation, calling `authAPI.register()`, plus wiring
 the `/register` route (deferred back on Day 18).
 
 ### 💡 What I learned
+
 - **Controlled components:** React state is the single source of truth for an input.
   Two wires: `value={state}` (state → input) and `onChange={e => setState(e.target.value)}`
   (typing → state). Because values live in state, you can validate them on submit.
@@ -37,6 +39,7 @@ the `/register` route (deferred back on Day 18).
   `'...' expected` parser error.
 
 ### ✅ What I actually did
+
 - `Register.tsx`: 4 states (email / masterPassword / confirmPassword / error), `handleRegister`
   with 4 ordered validations + `try/catch` calling `authAPI.register()` → `navigate("/login")`,
   three controlled `<Input>`s + `<Button>`, conditional error box, `export default`.
@@ -44,15 +47,18 @@ the `/register` route (deferred back on Day 18).
   (no ProtectedRoute — register must be reachable without a token).
 
 ### 🧪 Testing status
-⚠️ **NOT browser-verified yet** — code is complete but not run through the 6 cases
-(empty / bad email / short pw / mismatch / new-email success → /login / existing-email 409).
-To test later: restart stack, visit `/register`. New account e.g. `newuser@test.com` + a 12+ char
-password twice → should land on `/login`; `test@test.com` → backend 409 "User existed".
+
+✅ **Browser-verified 2026-07-21** — all 6 cases pass (Playwright):
+empty → "Please fill in all fields"; bad email → "Invalid email format"; short pw →
+"Password must be at least 12 characters"; mismatch → "Passwords do not match";
+new email `day20-0721a@test.com` → redirected to `/login`; existing email → 409 "User existed".
 
 ### 📍 Where I am
+
 Day 20 code done (Register form + route). Verification pending.
 
 ### ⏭️ Next session
+
 - **Test Day 20** through all 6 branches first.
 - Then **Day 21 + 21b–21f** — Tailwind & the design mini-track (spacing/`space-y`, reusable
   component props, visual hierarchy, dashboard cards, responsive + accessible). Prettify Login,

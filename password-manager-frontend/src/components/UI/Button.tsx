@@ -8,6 +8,7 @@ interface ButtonProps {
   variant?: "primary" | "danger" | "secondary"; // 样式变体
   disabled?: boolean; // 是否禁用
   type?: "button" | "submit" | "reset"; // 按钮类型
+  fullWidth?: boolean;
 }
 
 // 组件函数
@@ -18,6 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   variant = "primary", // 默认值
   disabled = false,
   type = "button",
+  fullWidth = false,
 }) => {
   const baseStyles = "px-4 py-2 rounded font-medium transition-colors";
   const variantStyle = {
@@ -26,8 +28,9 @@ const Button: React.FC<ButtonProps> = ({
     secondary: "bg-gray-600 text-white hover:bg-gray-700",
   };
   const isDisabled = disabled || isLoading;
+  const widthStyle = fullWidth ? "w-full" : "";
   const disabledStyles = isDisabled ? "opacity-50 cursor-not-allowed" : "";
-  const className = `${baseStyles} ${variantStyle[variant]} ${disabledStyles}`;
+  const className = `${baseStyles} ${variantStyle[variant]} ${disabledStyles} ${widthStyle}`;
 
   return (
     <button
